@@ -1,0 +1,89 @@
+@model List<ContactUs.Models.Message>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        table,th,td{
+        border: 1px solid black;
+        }
+        body{
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        }
+    </style>
+    <title>DashBoard</title>
+</head>
+<body>
+    <a href="/Admin/Logout">Logout</a>
+    @if (Model.FindAll(message => message.status == true).Count > 0)
+    {
+        <div class="activediv">
+            <h2 align="center">Active</h2>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                </tr>
+
+                @foreach (var message in Model)
+                {
+                    if (!message.status)
+                    {
+                        continue;
+                    }
+
+                    <tr>
+                        <td> @message.Id </td>
+                        <td> @message.name </td>
+                        <td> @message.email </td>
+                        <td> @message.message </td>
+                        <td> <a href="/Admin/Status/@message.Id"> @(message.status ? "Archive" : "Active")</a> </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+    @if (Model.FindAll(message => message.status == false).Count > 0)
+        {
+            <div class="archivediv">
+                <h2 align="center">Archive</h2>
+                <table>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                    </tr>
+    
+                    @foreach (var message in Model)
+                    {
+                        if (message.status)
+                        {
+                            continue;
+                        }
+    
+                        <tr>
+                            <td> @message.Id </td>
+                            <td> @message.name </td>
+                            <td> @message.email </td>
+                            <td> @message.message </td>
+                            <td> <a href="/Admin/Status/@message.Id"> @(message.status ? "Archive" : "Active")</a> </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+</body>
+</html>

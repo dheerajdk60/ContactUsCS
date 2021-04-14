@@ -1,0 +1,28 @@
+@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    }
+    .jumbotron{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+     input{
+     margin-left: 20px;
+     }   
+</style>
+<div class="jumbotron">
+    <form action="/Feedback/Add">
+        Name : <input type="text" placeholder="Enter name" name="name"><br><br>
+        Email : <input type="text" placeholder="Enter email" name="email"><br><br>
+        Message : <textarea placeholder="Enter message" name="message"></textarea><br><br>
+        <input type="submit" value="Send"><br><br>
+    </form>
+     <a href="/Admin/Login">Admin Login</a>
+</div>
