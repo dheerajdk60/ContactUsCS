@@ -9,7 +9,8 @@
 <head>
     <style>
         table,th,td{
-        border: 1px solid black;
+        border: 1px solid white;
+        padding: 5px;
         }
         body{
         display: flex;
@@ -17,6 +18,28 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        background-color: #111;
+        color: aliceblue;
+        }
+        a{
+        text-decoration: none;
+        
+        }
+        .activelink{
+        background-color: coral;
+        margin: 5px;
+        color: white;
+        border-radius: 2px;
+        }
+         .archivelink{
+        background-color: chartreuse;
+        margin: 5px;
+        color: white;
+        border-radius: 2px;
+        }
+        hr{
+        color: white;
+        width:100%;
         }
     </style>
     <title>DashBoard</title>
@@ -48,13 +71,20 @@
                         <td> @message.name </td>
                         <td> @message.email </td>
                         <td> @message.message </td>
-                        <td> <a href="/Admin/Status/@message.Id"> @(message.status ? "Archive" : "Active")</a> </td>
+                        <td> <a class="activelink" href="/Admin/Status/@message.Id"> @(message.status ? "Archive" : "Active")</a> </td>
                     </tr>
                 }
             </table>
         </div>
     }
-    @if (Model.FindAll(message => message.status == false).Count > 0)
+    @if (Model.FindAll(message => message.status == false).Count > 0&&Model.FindAll(message => message.status == true).Count > 0)
+    {
+        <br>
+        <br>
+        <hr>
+    }
+
+@if (Model.FindAll(message => message.status == false).Count > 0)
         {
             <div class="archivediv">
                 <h2 align="center">Archive</h2>
@@ -79,7 +109,7 @@
                             <td> @message.name </td>
                             <td> @message.email </td>
                             <td> @message.message </td>
-                            <td> <a href="/Admin/Status/@message.Id"> @(message.status ? "Archive" : "Active")</a> </td>
+                            <td> <a class="archivelink" href="/Admin/Status/@message.Id"> @(message.status ? "Archive" : "Active")</a> </td>
                         </tr>
                     }
                 </table>
