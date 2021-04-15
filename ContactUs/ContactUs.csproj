@@ -206,7 +206,6 @@
         <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
         <Content Include="Scripts\modernizr-2.8.3.js" />
         <Content Include="Views\Admin\Dashboard.cshtml" />
-        <Content Include="Views\Admin\Index.cshtml" />
         <Content Include="Views\Admin\Login.cshtml" />
         <Content Include="Views\Feedback\Add.cshtml" />
         <Content Include="Web.config" />

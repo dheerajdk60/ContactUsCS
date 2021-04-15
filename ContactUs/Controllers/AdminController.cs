@@ -54,14 +54,10 @@ namespace ContactUs.Controllers
             else
             {
                 connection.Close();
-                return View("Index");
+                return RedirectToAction("Index","Home");
             }
         }
         public ActionResult Dashboard()
-        {
-            return View();
-        }
-        public ActionResult Index()
         {
             return View();
         }
